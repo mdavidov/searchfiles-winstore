@@ -1,0 +1,278 @@
+﻿<SettingsFlyout
+    x:Class="SearchFiles.HelpFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFiles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Help"
+    d:DesignWidth="346">
+
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Brief Description"
+                       Style="{StaticResource TitleTextBlockStyle}"/>
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    eCodified Search.Files provides a traditional way of searching files, 
+                    where the user can separately specify file contents to search
+                    and file name patterns to match.
+                    Additionally, searching is always performed within a selected folder in 
+                    the file system (and not through the whole search index).
+                    This app does not use the OS search indexing feature.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    With Advanced search options 
+                    (available in the Pro edition) searching can be performed 
+                    using Regular Expressions and/or other additional options: 
+                    Case Sensitive; Whole Words; Any Word, All Words or Full Phrase; Max Sub-folder Depth.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    <Bold>{SF}</Bold> stands for the <Bold>Selected Folder</Bold>
+                    within this app (e.g. in search results and in file properties). 
+                    This abbreviation is used in order to improve readability and save valuable screen space.
+                    The actual path of the current Selected Folder is displayed near the top of app's main page. 
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    The app provides <Bold>INSTANT</Bold> access to the previous search results
+                    using the Back and Forward buttons (Pro edition).
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Simple Search (Default Options -         No Regular Expressions)"
+                       Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    Search Words should be entered as simple, space separated words (no wild cards). 
+                    Search words are optional. When not specified, files are not examined for 
+                    matching contents – all files are listed (depending on File Names and other options).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    File Names should be entered as space separated, wild-card patterns 
+                    (e.g. *.txt  *.doc*).  File Names are also optional. When not specified, file name matching 
+                    is not done – all files are listed (depending on Search Words and other options).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Tap/click the Search button to start the search.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    If both search words and file names are specified, then each file must satisfy 
+                    both conditions - matching contents and (partial) file name.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Default options are: Case Sensitive cleared, Whole Words cleared, 
+                    All Words radio button checked, Regular Expressions cleared, Max Depth: Unlimited box checked.
+                </Paragraph>
+                <Paragraph></Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Advanced Search (No Regular Expressions)"
+                       Style="{StaticResource TitleTextBlockStyle}" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    Case Sensitive check box affects the contents searching for Search Words 
+                    (case sensitive or ignore case), but not the file name matching.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    File name patterns (entered in the File Names box) are always 
+                    matched using the ignore case option.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    When the Whole Words box is checked, each entered Search Word 
+                    has to be contained as a separate word in the file. 
+                    This means that in the file contents, the character just before 
+                    the matching word and the character just after the matching word 
+                    must not be a letter, digit or underscore.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Three radio buttons Any Word, All Words and Full Phrase are relevant 
+                    only when more than one search word is entered. When the Any Word button
+                    is checked, then a file is considered matching if it contains 
+                    at least one (any one) of the search words. 
+                    When the All Words button is checked, then each file must contain 
+                    all given search words. And when Full Phrase is checked, 
+                    then a file must contain the complete text (i.e. the exact/full phrase) 
+                    of the Search Words box. The "exactness" of the match still depends on 
+                    the Case Sensitive and Whole Words options.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    In order to search for "words" containing space(s) you can either: 
+                    a) make the Full Phrase button checked, and enter the "word" / phrase; or 
+                    b) use Regular Expressions.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    To specify File Name patterns containing space(s), Regular Expressions can be used.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Max Depth can be used to limit the maximum sub-folder depth that the app will go to when searching.
+                    The Unlimited check box must be cleared, and maximum depth specified (0 to 1000+). 
+                    Max Depth 0 means only the files in the selected folder will be searched, 
+                    depth 1 means files in the selected folder and immediate sub-folders will be searched,
+                    depth 2 means selected folder, immediate sub-folders and sub-folders of the 
+                    immediate sub-folders will be searched, and so on.
+                </Paragraph>
+                <Paragraph></Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Advanced Search (Regular Expressions)" Style="{StaticResource TitleTextBlockStyle}" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    1. Make sure the Regular Expressions check box is checked.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    2. Enter regular expression(s) in the Search Words box - optional.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    3. Enter regular expression(s) in the File Names box - optional.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    4. Optionally select any other Advanced options as necessary:
+                    Case Sensitive; Whole Words; Any Word, All Words or Full Phrase; 
+                    Max Sub-folder Depth: Unlimited box checked or enter maximum depth (0 to 1000+).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    5. Tap/click the Search button to start the search.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    With Regular Expressions, the whole text in the Search Words box is used 
+                    as a regular expression for contents searching.  
+                    Case Sensitive check box does affect contents searching when using (and not using) regular expressions.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    The whole text in the File Names box is used as a regular expression to match file names, 
+                    which is always done with ignore case option (regardless of the Case Sensitive check box).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Whole Words and Any / All / Exact Phrase options do not affect regular expression searching.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Max Depth can be limited (or not) the same way as above, when not using Regular Expressions.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Regular expressions on Wikipedia: 
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://en.wikipedia.org/wiki/Regular_expression" >
+                        http://en.wikipedia.org/wiki/Regular_expression
+                    </Hyperlink>
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    Regular expressions tutorial etc:
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://www.regular-expressions.info/" >
+                        http://www.regular-expressions.info/
+                    </Hyperlink>
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <!-- support -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Support" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://www.ecodified.com/#!support/cpjh" >
+                        eCodified Support info
+                    </Hyperlink>
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Features" Style="{StaticResource TitleTextBlockStyle}" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    + Separately specify file contents to search and file name patterns to match.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + Search files within a selected folder (not through the whole search index).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + Instant access to the previous search results using the Back and Forward buttons (Pro edition).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + Ability to specify if all words must be found within a file, any word, or the full phrase (Pro edition).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + Match whole or partial words, and ignore or match case (Pro edition).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + Specify maximum sub-folder depth or unlimited depth for the search (Pro edition).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + Perform advanced search using Regular Expressions (Pro edition).
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    + OS search indexing not used by this app.
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <!-- developed by -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <Button Content="Developed by eCodified" x:Name="m_DevelopedByBtn" Background="Transparent" BorderBrush="Transparent"
+                    HorizontalAlignment="Left" Margin="-16,0,0,0" Click="DevelopedByBtn_Click" />
+            <StackPanel x:Name="m_AuthorPanel" Visibility="Collapsed" >
+                <RichTextBlock FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" >
+                    <Paragraph>Author: Milivoy "Mike" Davidov</Paragraph>
+                </RichTextBlock>
+                <RichTextBlock FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" >
+                    <Paragraph>Founder &amp; Chief Software Architect</Paragraph>
+                </RichTextBlock>
+                <RichTextBlock FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" >
+                    <Paragraph>eCodified - Sydney, Australia</Paragraph>
+                </RichTextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- copyright -->
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" >
+            <TextBlock Text="Copyright © eCodified" TextWrapping="Wrap" FontWeight="SemiBold"
+                       Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left"/>
+            <TextBlock Text="All rights reserved." TextWrapping="Wrap" FontWeight="SemiBold"
+                       Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+    </StackPanel>
+
+</SettingsFlyout>

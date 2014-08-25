@@ -1,0 +1,80 @@
+﻿<SettingsFlyout
+    x:Class="SearchFiles.PrivacyFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFiles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Privacy"
+    d:DesignWidth="346">
+
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Privacy Statement"
+                       Style="{StaticResource TitleTextBlockStyle}"/>
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    eCodified Search.Files does not collect or store any private information about you.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    The app does not ask you for your email address, name, password, location or any other personal or private information.
+                </Paragraph>
+                <Paragraph></Paragraph>
+                <Paragraph>
+                    The app does not collect, store, send, share or sell your search entries or history.
+                </Paragraph>
+                <!--<Paragraph></Paragraph>
+                <Paragraph>
+                    The app does not collect, store or send any information about the PC / tablet it runs on, or any OS or user login information.
+                </Paragraph>-->
+            </RichTextBlock>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Online" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://www.ecodified.com/#!privacy/c205y" >
+                        eCodified Privacy Policy online
+                    </Hyperlink>
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Support" />
+            <RichTextBlock Margin="0,15,0,0" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://www.ecodified.com/#!support/cpjh" >
+                        eCodified Support info
+                    </Hyperlink>
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <!--<StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Additional" />
+            <RichTextBlock Margin="0,15,0,10" TextWrapping="Wrap" FontSize="15" >
+                <Paragraph>
+                    This app is provided on the Microsoft Windows Store.
+                    For additional privacy information see:
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://privacy.microsoft.com/">
+                        Microsoft Online Privacy Notice
+                    </Hyperlink>
+                </Paragraph>
+                <Paragraph>
+                    <Hyperlink NavigateUri="http://www.microsoftstore.com/">
+                        Microsoft Store
+                    </Hyperlink>
+                </Paragraph>
+            </RichTextBlock>
+        </StackPanel>-->
+
+    </StackPanel>
+</SettingsFlyout>

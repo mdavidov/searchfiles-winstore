@@ -1,0 +1,74 @@
+﻿<SettingsFlyout
+    x:Class="SearchFiles.AboutFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFiles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="About"
+    d:DesignWidth="346">
+
+
+    <StackPanel x:Name="FlyoutContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+
+        <!-- app name and version Note: app name is set dynamically in the AboutFlyout() ctor -->
+        <TextBlock Text="eCodified Search.Files" x:Name="m_AppName" FontWeight="Bold" TextWrapping="Wrap"
+                    Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left"/>
+        <TextBlock Text="version 1.3.0.0" FontWeight="SemiBold" TextWrapping="Wrap" 
+                    Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left"/>
+
+        <!-- buy app button and text -->
+        <StackPanel Margin="0, 10, 0, 0" Orientation="Vertical">
+            <TextBlock Margin="0, 25, 0, 0" Text="Buy Pro edition permanent license" x:Name="m_upgradeTxt" 
+                        FontWeight="SemiBold" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" 
+                        HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <Button Margin="30, 7, 0, 0" Content="Buy Pro" x:Name="m_upgradeBtn" FontWeight="SemiBold" 
+                    VerticalAlignment="Center" Click="UpgradeButton_Click" BorderBrush="Black" />
+        </StackPanel>
+
+        <!-- privacy link -->
+        <StackPanel Margin="0, 10, 0, 0">
+            <HyperlinkButton Padding="0,0,0,0" Margin="0, 25, 0, 0" Content="eCodified Privacy Policy online"
+                                Tag="http://www.ecodified.com/#!privacy/c205y" HorizontalAlignment="Left" Click="HyperlinkButton_Click"/>
+        </StackPanel>
+
+        <!-- support link -->
+        <StackPanel Margin="0, 10, 0, 0">
+            <HyperlinkButton Padding="0,0,0,0" Margin="0, 25, 0, 0" Content="eCodified Support info" 
+                                Tag="http://www.ecodified.com/#!support/cpjh" HorizontalAlignment="Left" Click="HyperlinkButton_Click"/>
+        </StackPanel>
+
+        <!-- icon image -->
+        <StackPanel Margin="0, 30, 0, 0">
+            <Image Width="150" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Source="Assets/Logo.png" AutomationProperties.Name="Search.Files Logo"/>
+        </StackPanel>
+
+        <!-- developed by -->
+        <Button Content="Developed by eCodified" x:Name="m_DevelopedByBtn" Background="Transparent" BorderBrush="Transparent"
+                    HorizontalAlignment="Left" Margin="-16,25,0,0" Click="DevelopedByBtn_Click" />
+        <StackPanel x:Name="m_AuthorPanel" Visibility="Collapsed" >
+            <RichTextBlock FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" >
+                <Paragraph>Author: Milivoy "Mike" Davidov</Paragraph>
+            </RichTextBlock>
+            <RichTextBlock FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" >
+                <Paragraph>Founder &amp; Chief Software Architect</Paragraph>
+            </RichTextBlock>
+            <RichTextBlock FontSize="15" TextWrapping="Wrap" HorizontalAlignment="Left" >
+                <Paragraph>eCodified - Sydney, Australia</Paragraph>
+            </RichTextBlock>
+        </StackPanel>
+
+        <!-- copyright -->
+        <StackPanel Margin="0, 20, 0, 0">
+            <TextBlock Text="Copyright © eCodified" TextWrapping="Wrap" FontWeight="SemiBold"
+                       Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left"/>
+            <TextBlock Text="All rights reserved." TextWrapping="Wrap" FontWeight="SemiBold"
+                       Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+    </StackPanel>
+
+</SettingsFlyout>

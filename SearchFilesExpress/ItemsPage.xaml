@@ -1,0 +1,359 @@
+﻿<common:LayoutAwarePage
+    x:Class="SearchFiles.ItemsPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFiles"
+    xmlns:data="using:SearchFiles.Data"
+    xmlns:common="using:SearchFiles.Common"
+    xmlns:sys="using:System"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    mc:Ignorable="d"
+    x:Name="RootPage">
+
+    <common:LayoutAwarePage.Resources>
+        <CollectionViewSource
+            x:Name="m_FileInfoViewItemSource">
+            <!--Source="{Binding Items}"
+            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance IsDesignTimeCreatable=True, Type=data:FileInfoDataSource}}">-->
+        </CollectionViewSource>
+        <Style x:Key="BaseStatusStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI Semilight"/>
+            <Setter Property="FontSize" Value="14.667"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+        <Style x:Key="StatusStyle" BasedOn="{StaticResource BaseStatusStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1f886a"/>
+        </Style>
+        <Style x:Key="ErrorStyle" BasedOn="{StaticResource BaseStatusStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Blue"/>
+        </Style>
+    </common:LayoutAwarePage.Resources>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="m_BottomAppBar" IsEnabled="False" IsOpen="False" IsSticky="False" Padding="10,0,10,0" AutomationProperties.Name="Bottom App Bar"
+                Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="LeftPanel" Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
+                    <!--<Button x:Name="Edit" Style="{StaticResource EditAppBarButtonStyle}" Tag="Edit"/>
+                    <Button x:Name="Delete" Style="{StaticResource DeleteAppBarButtonStyle}" Tag="Delete"/>-->
+                </StackPanel>
+                <StackPanel x:Name="RightPanel" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <!--<Button Style="{StaticResource SearchAppBarButtonStyle}" />-->
+                    <Button x:Name="Settings" Style="{StaticResource SettingsAppBarButtonStyle}" Tag="Settings"/>
+                    <Button x:Name="Help" Style="{StaticResource HelpAppBarButtonStyle}" Tag="Help"/>
+                    <Button x:Name="About" Style="{StaticResource AboutAppBarButtonStyle}" Tag="About"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+
+    <!-- Main Content Grid ... Background="{StaticResource ApplicationPageBackgroundThemeBrush}">-->
+    <Grid HorizontalAlignment="Stretch" MaxWidth="768" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- TITLE BAR-->
+        <Border Grid.Row="0" x:Name="m_TitleBar" Background="Transparent">
+            <Grid>
+                <!--<Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <UI:AdControl Grid.Row="0" x:Name="m_advert1" Width="728" Height="90"
+                              ApplicationId="ace2c515-74ff-4b8e-b7a8-845ed3b3f9d3" AdUnitId="10741480" 
+                              HorizontalAlignment="Center" VerticalAlignment="Top" IsTabStop="False" />-->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                    <TextBlock x:Name="m_TitleTblk" Text="eCodified Search.Files"
+                               TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,0" FontSize="24" />
+                    <!--<TextBlock x:Name="m_CompanyTblk" Text="by eCodified"
+                               TextWrapping="Wrap" TextAlignment="Right" Margin="10,10,0,0" FontSize="24" />-->
+                </StackPanel>
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <UI:AdControl Grid.Column="0" x:Name="m_AdDuplexAd1" Width="728" Height="90" 
+                                  ApplicationId="281062f4-39c4-4336-9e01-ce4459d9ec3b" AdUnitId="10068880" 
+                                  HorizontalAlignment="Right" VerticalAlignment="Top" IsTabStop="False" />
+                </StackPanel>-->
+            </Grid>
+        </Border>
+
+        <!--<Border Grid.Row="1" Height="2" BorderThickness="1" BorderBrush="Gray" />-->
+
+        <!-- SEARCH BAR-->
+        <Border Grid.Row="2" x:Name="m_SearchBar" Background="#1f886a" HorizontalAlignment="Stretch" >
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="m_BackBtn" Style="{StaticResource PreviousAppBarButtonStyle}" Click="BackBtn_Click" />
+                <Button Grid.Column="1" x:Name="m_FowdBtn" Style="{StaticResource NextAppBarButtonStyle}" Click="FowdBtn_Click"/>
+                <StackPanel Grid.Column="2" Orientation="Vertical">
+                    <TextBox Name="m_SearchWordsTbx" Margin="0,5,0,4" VerticalAlignment="Center"
+                             PlaceholderText="Search Words"/> <!--TextChanged="SearchWordsTbx_TextChanged"-->
+                    <TextBox Name="m_NamesFilterTbx" Margin="0,0,0,3" VerticalAlignment="Center"
+                             PlaceholderText="File Names"/> <!--TextChanged="NamesFilterTbx_TextChanged"-->
+                    <!--<SearchBox Name="m_SearchWordsTbx" Margin="10" VerticalAlignment="Center"
+                               PlaceholderText="Search Words"
+                               QuerySubmitted="SearchBox_QuerySubmitted" SuggestionsRequested="SearchBox_SuggestionsRequested"/>-->
+                </StackPanel>
+                <StackPanel Grid.Column="3" Orientation="Horizontal">
+                    <Button x:Name="NoOpBtn" Opacity="0" IsEnabled="False" IsTabStop="False" Style="{StaticResource SearchAppBarButtonStyle}" Click="NoOpBtn_Click" />
+                    <Button x:Name="m_SearchBtn" Style="{StaticResource SearchAppBarButtonStyle}" Tag="Search" 
+                        FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center" Click="SearchBtn_Click" />
+                    <!--<Button Grid.Column="3" x:Name="m_StopBtn1" Margin="0,0,0,0" Style="{StaticResource StopAppBarButtonStyle}" Tag="Search" Visibility="Collapsed"
+                        FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center" Click="StopBtn_Click" />-->
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- FOLDER BAR -->
+        <Border Grid.Row="3" x:Name="m_FolderBar" Background="#1f886a" HorizontalAlignment="Stretch">
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="m_FolderChangeBtn" Style="{StaticResource FolderAppBarButtonStyle}"
+                        Click="FolderChangeBtn_Click" Margin="0,0,0,0"/>
+                <Button Grid.Column="1" x:Name="m_UpBtn" Style="{StaticResource UpAppBarButtonStyle}"
+                        Visibility="Visible" Opacity="0" IsEnabled="False" IsTabStop="False" /> <!-- Click="UpBtn_Click" -->
+                <TextBox Grid.Column="2" x:Name="m_FolderUriTbx" Opacity="0.57" IsTabStop="False" IsReadOnly="True" Margin="0,5,0,5" MaxHeight="220"
+                            VerticalAlignment="Center" FontSize="18" TextWrapping="Wrap" />
+                <Button Grid.Column="3" x:Name="m_HelpBtn" Style="{StaticResource HelpAppBarButtonStyle}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="HelpBtn_Click" />
+                <Button Grid.Column="4" x:Name="m_MoreOptionsBtn" Style="{StaticResource MoreOptionsAppBarButtonStyle}"
+                        Tag="MoreOptions" Click="MoreOptionsBtn_Click" Margin="0,0,0,0"/>
+                <Button Grid.Column="4" x:Name="m_LessOptionsBtn" Style="{StaticResource LessOptionsAppBarButtonStyle}"
+                        Tag="LessOptions" Click="LessOptionsBtn_Click" Visibility="Collapsed" Margin="0,0,0,0"/>
+            </Grid>
+        </Border>
+
+        <!--<Border Grid.Row="4" Height="2" BorderThickness="1" BorderBrush="Gray" />-->
+
+        <!-- OPTIONS GRID -->
+        <Border Grid.Row="5" x:Name="m_OptionsGrid" Background="#19624e" >
+            <Grid x:Name="m_OptionsG2" Margin="0,4,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="1" Grid.Column="0" x:Name="m_WordMatchTblk" Text="Word Match:" 
+                           Margin="10,0,0,0" FontSize="18" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Grid.Column="1" x:Name="m_WordMatchStack" Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                        <CheckBox x:Name="m_CaseSensitiveChk" Content="Case Sensitive" Margin="0,0,0,0" Click="CaseSensitiveChk_Click" />
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <RadioButton GroupName="WordMatchGroup" x:Name="m_MatchAnyWordRbtn" Content="Any Word" Margin="70,0,0,0" Click="MatchAnyWordRbtn_Click"/>
+                            <RadioButton GroupName="WordMatchGroup" x:Name="m_MatchAllWordsRbtn" Content="All Words" Margin="30,0,0,0" Click="MatchAllWordsRbtn_Click" />
+                            <RadioButton GroupName="WordMatchGroup" x:Name="m_MatchCompletePhraseRbtn" Content="Full Phrase" Margin="30,0,0,0" Click="MatchCompletePhraseRbtn_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <CheckBox x:Name="m_WholeWordsChk" Content="Whole Words" Margin="0,10,0,0" Click="WholeWordsChk_Click" />
+                        <CheckBox x:Name="m_UseRegexChk" Content="Regular Expressions" Margin="75,10,0,0"
+                                  Click="UseRegexChk_Click" />
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock Grid.Row="2" Grid.Column="0" x:Name="m_LevelTblk" Text="Max Depth:" 
+                           Margin="10" FontSize="18" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="10">
+                    <CheckBox x:Name="m_AllLevelsChk" Content="Unlimited" IsChecked="True" VerticalAlignment="Center" Click="AllLevelsChk_Click" />
+                    <TextBox x:Name="m_LevelNbrTbox" Text="0" FontSize="14" VerticalAlignment="Center" Margin="30,0,0,0" 
+                                TextAlignment="Center" TextChanged="LevelNbrTbox_TextChanged"/>
+                    <!--<Slider x:Name="m_LevelNbrSldr" Minimum="0" Maximum="20" Width="150" Margin="30,0,0,0"
+                            Orientation="Horizontal" VerticalAlignment="Bottom"/>-->
+                </StackPanel>
+                <!--<Border Grid.Row="3" Grid.ColumnSpan="4" Height="2" BorderThickness="1" BorderBrush="Gray" />-->
+            </Grid>
+        </Border>
+        
+        <!-- FILE COUNT BAR -->
+        <Border Grid.Row="6" Grid.Column="0" x:Name="m_FileCountBar" Background="#293259" >
+            <Grid Margin="0,0,0,4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" x:Name="m_MatchCountLbl" Text="Matching Files:" 
+                               Margin="10,10,0,0" FontSize="18" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="m_MatchCountNbr" Text="" 
+                               Margin="5,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <!--<TextBlock Grid.Row="0" Grid.Column="2" x:Name="m_AllCountLbl" Text=""
+                               Margin="5,10,0,0" FontSize="18" VerticalAlignment="Center" />-->
+                <TextBlock Grid.Row="0" Grid.Column="3" x:Name="m_AllCountNbr" Text="" 
+                               Margin="5,10,0,0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ProgressRing Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="7" x:Name="m_ProgressRing" Margin="0"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="40"/>
+                <Button Grid.Row="0" Grid.Column="4" x:Name="m_BuyAppBtn" Style="{StaticResource BuyProductAppBarButtonStyle}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,10,0" Click="BuyAppBtn_Click" />
+                <!--<Button Grid.Row="0" Grid.Column="5" x:Name="m_ResultsPageBtn" Style="{StaticResource ShowResultsAppBarButtonStyle}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,10,0" Click="ResultsPageBtn_Click" />-->
+                <!--<Button Grid.Row="0" Grid.Column="5" x:Name="m_ClearResBtn" Style="{StaticResource ClearAppBarBtnStyle}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Click="ClearResBtn_Click" />-->
+                <Button Grid.Row="0" Grid.Column="7" x:Name="m_StopBtn2" Margin="0,0,0,0" Style="{StaticResource StopAppBarButtonStyle}"
+                            FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center" Click="StopBtn_Click" />
+                <!--<ProgressBar Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="8" x:Name="m_ProgressBar" Margin="0"
+                              HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="20" />-->
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="7" x:Name="m_FoundFilesSeparator" Height="2" BorderThickness="1" BorderBrush="Gray" />
+
+        <!-- FOUND FILES DISPLAY -->
+        <Border Grid.Row="8" Grid.Column="0" x:Name="m_FoundFilesDisplay" Background="#293259" >
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListView x:Name="m_FileInfoViewGrid00" Margin="0,10,0,0"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid01" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid02" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid03" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid04" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid05" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid06" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid07" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid08" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid09" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid10" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+                <ListView x:Name="m_FileInfoViewGrid11" Margin="0,10,0,0"
+                          Visibility="Collapsed"
+                          ItemsSource="{Binding Source={StaticResource m_FileInfoViewItemSource}}"
+                          ItemTemplate="{StaticResource eCodifiedFileInfoItem}"
+                          SelectionMode="None" IsSwipeEnabled="True"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                          IsItemClickEnabled="True" ItemClick="FileInfoView_ItemClick"
+                          RightTapped="FileInfoView_RightTapped" DoubleTapped="FileInfoView_DoubleTapped" Holding="FileInfoView_Holding" >
+                </ListView>
+            </Grid>
+        </Border>
+    </Grid>
+</common:LayoutAwarePage>

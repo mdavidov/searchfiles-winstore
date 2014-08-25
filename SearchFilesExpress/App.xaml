@@ -1,0 +1,18 @@
+﻿<Application
+    x:Class="SearchFiles.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFiles"
+    xmlns:localData="using:SearchFiles.Data">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- IMPORTANT: Styles that define common aspects of the platform look and feel
+                     MUST BE LISTED HERE! -->
+                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

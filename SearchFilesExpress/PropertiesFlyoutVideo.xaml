@@ -1,0 +1,38 @@
+﻿<SettingsFlyout
+    x:Class="SearchFiles.PropertiesFlyoutVideo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFiles"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="File Properties"
+    d:DesignWidth="346">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <TextBlock Text="Video" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" TextWrapping="Wrap" />
+        <TextBox x:Name="fileName" Header="File Name" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="videoTitle" Header="Title" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="duration" Header="Duration" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="directors" Header="Director(s)" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="writers" Header="Writer(s)" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="producers" Header="Producer(s)" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="publisher" Header="Publisher" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="dimensions" Header="Screen Dimensions" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="year" Header="" Text="Year" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="rating" Header="Rating" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="bitrate" Header="Bitrate" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="keywords" Header="Keyword(s)" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="latitude" Header="Latitude" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="longitude" Header="Longitude" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <!-- -->
+        <TextBox x:Name="fileType" Header="File Type" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="fileSize" Header="File Size" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="fileLocation" Header="File Provider" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="containingFolder" Header="Containing Folder" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="selectedFolder" Header=" {SF} - Selected Folder" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <TextBox x:Name="absolutePath" Header="Full Absolute Path" Text="" IsReadOnly="True" Margin="0,10,0,0" TextWrapping="Wrap" />
+        <Image x:Name="fileImage" Stretch="None" Width="240" Height="240" Margin="0,10,0,0" />
+    </StackPanel>
+</SettingsFlyout>
