@@ -16,7 +16,7 @@
         <!-- app name and version Note: app name is set dynamically in the AboutFlyout() ctor -->
         <TextBlock Text="eCodified Search.Files" x:Name="m_AppName" FontWeight="Bold" TextWrapping="Wrap"
                     Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left"/>
-        <TextBlock Text="version 1.3.0.0" FontWeight="SemiBold" TextWrapping="Wrap" 
+        <TextBlock Text="version 1.4.0.0" FontWeight="SemiBold" TextWrapping="Wrap" 
                     Style="{StaticResource BodyTextBlockStyle}" HorizontalAlignment="Left"/>
 
         <!-- buy app button and text -->
