@@ -1659,9 +1659,7 @@ namespace SearchFiles
         {
             try
             {
-                if (!IsPro())
-                    await AskAndBuyAppAsync();
-                if (!IsPro() || m_BackStack.Count <= 0)
+                if (m_BackStack.Count <= 0)
                     return;
 
                 if (m_Processing)
@@ -1703,9 +1701,7 @@ namespace SearchFiles
         {
             try
             {
-                if (!IsPro())
-                    await AskAndBuyAppAsync();
-                if (!IsPro() || m_FowdStack.Count <= 0)
+                if (m_FowdStack.Count <= 0)
                     return;
 
                 if (m_Processing)
