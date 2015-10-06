@@ -1,21 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using SearchFiles.Data;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
-using Windows.Storage.FileProperties;
-using Windows.Storage.Pickers;
-using Windows.Storage.Search;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using SearchFiles.Data;
 
 namespace SearchFiles.Common
 {

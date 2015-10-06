@@ -1,23 +1,16 @@
 ﻿using SearchFiles.Common;
-using SearchFiles.Data;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using System.Collections.Specialized;
 
 namespace SearchFiles.Data
 {

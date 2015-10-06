@@ -4,22 +4,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
-using Windows.Storage.Pickers;
-using Windows.Storage.Search;
 using Windows.Storage.Streams;
-using Windows.System;
-using Windows.System.UserProfile;
-using Windows.UI.Core;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 namespace SearchFiles.Common
 {

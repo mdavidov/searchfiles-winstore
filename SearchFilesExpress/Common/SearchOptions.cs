@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
-using Windows.Storage.FileProperties;
-using Windows.Storage.Pickers;
-using Windows.Storage.Search;
-using Windows.Storage.Streams;
 
 namespace SearchFiles.Common
 {

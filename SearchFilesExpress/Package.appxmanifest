@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="62403eCodified.Search.Files.Express" Publisher="CN=CF05E301-D492-44E5-BD0C-6D475B35C1C3" Version="1.4.0.0" />
+  <Identity Name="62403eCodified.Search.Files.Express" Publisher="CN=CF05E301-D492-44E5-BD0C-6D475B35C1C3" Version="1.5.0.0" />
   <Properties>
     <DisplayName>Search.Files Express</DisplayName>
     <PublisherDisplayName>eCodified</PublisherDisplayName>
