@@ -13,7 +13,7 @@ namespace SearchFiles.Common
         /// <summary>
         /// Multicast event for property change notifications.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Checks if a property already matches a desired value.  Sets the property and
@@ -27,13 +27,19 @@ namespace SearchFiles.Common
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String? propertyName = null)
         {
-            if (object.Equals(storage, value)) return false;
+            if (object.Equals(storage, value))
+                return false;
 
             storage = value;
-            this.OnPropertyChanged(propertyName);
-            return true;
+            if (propertyName != null)
+            {
+                this.OnPropertyChanged(propertyName);
+                return true;
+            }
+            else
+                return false;
         }
 
         /// <summary>

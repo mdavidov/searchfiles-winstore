@@ -90,7 +90,7 @@ namespace SearchFiles
         //DateTime m_SingleTapLastTime = DateTime.Now;
         private bool m_SingleTapNogo = true;
 
-        private eCodified_SystemInfo systemInfo = null;
+        private eCodified_SystemInfo? systemInfo = null;
         private static int NBR_TILES_HOLD = 1;
 
         private ListView m_FileInfoViewGrid = null;

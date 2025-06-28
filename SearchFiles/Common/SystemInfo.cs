@@ -22,9 +22,9 @@ namespace SearchFiles.Common
                 cpuArch = ECpuArchitecture.UNKNOWN;
                 cpuType = ECpuType.UNKNOWN;
 
-                GetNativeSystemInfo(ref sysInfo);
-                cpuArch = GetProcessorArchitecture();
-                cpuType = GetProcessorType();
+                //GetNativeSystemInfo(ref sysInfo);
+                //cpuArch = GetProcessorArchitecture();
+                //cpuType = GetProcessorType();
             }
             catch (Exception ex) { Debug.WriteLine(ex.ToString()); Debug.Assert(false); }
         }
